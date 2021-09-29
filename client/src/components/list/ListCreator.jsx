@@ -4,9 +4,9 @@ import styled from "styled-components";
 import HeaderComponent from "./listitem/HeaderComponent";
 import DeleteListButton from "./buttons/DeleteListButton";
 import UpdateListButton from "./buttons/UpdateListButton";
-import SaveListButton from "./buttons/SaveListButton";
+import CreateListButton from "./buttons/CreateListButton";
 
-const Todolist = styled.div`
+const Listcreator = styled.div`
   background-color: pink;
   border: green;
   display: grid;
@@ -16,14 +16,12 @@ const Todolist = styled.div`
   padding: 50px;
 `;
 
-export default function TodoList() {
+export default function ListCreator() {
   return (
-    <Todolist>
+    <Listcreator>
       <HeaderComponent />
       <Todolistitem />
-      <DeleteListButton />
-      <UpdateListButton />
-      <SaveListButton />
-    </Todolist>
+      <CreateListButton />
+    </Listcreator>
   );
 }

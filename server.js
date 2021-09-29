@@ -1,8 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const session = require("./models/listmodel");
+const list = require("./models/listmodel");
+
 const app = express();
+
+// create application/json parser
+var jsonParser = bodyParser.json();
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 mongoose.connect("mongodb://localhost:27017/todolist", {
   useNewUrlParser: true,
@@ -15,24 +22,20 @@ db.once("open", () => {
   console.log("Connected to mongoDb");
 });
 
-app.post("/customers", (request, response) => {
+app.post("/saveTask", jsonParser, (request, response) => {
   console.log(request.body);
 
-  const newSession = new session({
-    name: request.body.name,
-    rating: request.body.rating,
-    duration: request.body.duration,
-    tasks: request.body.tasks,
-    mood: request.body.mood,
-    comment: request.body.comment,
+  const newList = new list({
+    header: request.body.header,
+    task: request.body.task,
   });
   //console.log(request.body.name)
-  newSession.save((error) => {
+  newList.save((error) => {
     if (error) {
       console.log(error);
     }
   });
-  response.end("session created");
+  response.end("list created");
 });
 
 const port = 5000;
