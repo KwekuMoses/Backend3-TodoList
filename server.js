@@ -1,16 +1,38 @@
-const express = require('express');
-const cors = require('cors');
-
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const session = require("./models/listmodel");
 const app = express();
 
-app.get('/api/customers', cors(), (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'John', lastName: 'Doe'},
-    {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-    {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-  ];
+mongoose.connect("mongodb://localhost:27017/todolist", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-  res.json(customers);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error"));
+db.once("open", () => {
+  console.log("Connected to mongoDb");
+});
+
+app.post("/customers", (request, response) => {
+  console.log(request.body);
+
+  const newSession = new session({
+    name: request.body.name,
+    rating: request.body.rating,
+    duration: request.body.duration,
+    tasks: request.body.tasks,
+    mood: request.body.mood,
+    comment: request.body.comment,
+  });
+  //console.log(request.body.name)
+  newSession.save((error) => {
+    if (error) {
+      console.log(error);
+    }
+  });
+  response.end("session created");
 });
 
 const port = 5000;

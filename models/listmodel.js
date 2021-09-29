@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const moment = require("moment");
 
-const SessionSchema = new Schema({
+const ListSchema = new Schema({
   header: {
     type: String,
     default: "kweku",
@@ -21,4 +21,4 @@ const SessionSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Session", SessionSchema);
+module.exports = mongoose.model("list", ListSchema);
