@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Updatelistbutton = styled.button`
-  background-color: green;
+  background-color: #def7de;
   width: 150px;
 `;
-export default function UpdateListButton() {
-  return <Updatelistbutton>Edit List</Updatelistbutton>;
+export default function EditListButton() {
+  //* Updates database
+  //* Redirects Back to page
+  return <Updatelistbutton>Update List</Updatelistbutton>;
 }

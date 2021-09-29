@@ -9,7 +9,7 @@ const Createlistbutton = styled.button`
   width: 150px;
 `;
 
-export default function SaveListButton() {
+export default function CreateListButton() {
   const { task, setTask } = useContext(UserInputContext);
   const { header, setHeader } = useContext(UserInputContext);
   const submit = (e) => {

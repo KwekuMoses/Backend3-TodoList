@@ -2,8 +2,6 @@ import React from "react";
 import Todolistitem from "./listitem/Todolistitem";
 import styled from "styled-components";
 import HeaderComponent from "./listitem/HeaderComponent";
-import DeleteListButton from "./buttons/DeleteListButton";
-import UpdateListButton from "./buttons/UpdateListButton";
 import CreateListButton from "./buttons/CreateListButton";
 
 const Listcreator = styled.div`

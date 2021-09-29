@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const list = require("./models/listmodel");
+const moment = require("moment");
 
 const app = express();
 
@@ -20,6 +21,22 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
   console.log("Connected to mongoDb");
+});
+
+/**
+ * Get where greater than 3
+ */
+
+app.get("/getLists", (request, response) => {
+  let dateToday = moment().format("YYYY-MM-DD");
+
+  list.find({ date: dateToday }).then((listFound) => {
+    if (!listFound) {
+      return res.status(404).end();
+    }
+    console.log("listfound " + listFound);
+    return response.status(200).json(listFound);
+  });
 });
 
 app.post("/saveTask", jsonParser, (request, response) => {
