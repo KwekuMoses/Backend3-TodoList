@@ -1,15 +1,27 @@
 import React from "react";
-import Todolist from "../../list/Todolist";
-import styled, { ThemeProvider } from "styled-components";
+import Todolist from "../../list/TodoList";
+import styled from "styled-components";
+import CreateListButton from "./buttons/CreateListButton";
 
 const LandingPageWrapper = styled.div`
-  background-color: red;
+  background-color: #ffffff;
+  display: grid;
+  place-items: center;
+  height: 200vh;
 `;
+
+const LandingTitle = styled.div`
+  place-self: start;
+  margin: 20px;
+  font-weight: bold;
+`;
+
 export default function Landingpage() {
   return (
     <LandingPageWrapper>
-      <h1>LANDING PAGE</h1>
-      <Todolist></Todolist>
+      <LandingTitle>THE TO DO LIST</LandingTitle>
+      <Todolist />
+      <CreateListButton />
     </LandingPageWrapper>
   );
 }
