@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const list = require("./models/listmodel");
+const get_lists = require("./models/listmodel");
 const moment = require("moment");
 
 const app = express();
@@ -30,7 +30,18 @@ db.once("open", () => {
 app.get("/getLists", (request, response) => {
   let dateToday = moment().format("YYYY-MM-DD");
 
-  list.find({ date: dateToday }).then((listFound) => {
+  get_lists.find().then((listsFound) => {
+    if (!listsFound) {
+      return res.status(404).end();
+    }
+    //console.log("listfound " + listsFound);
+    return response.status(200).json(listsFound);
+  });
+});
+app.get("/getListsToday", (request, response) => {
+  let dateToday = moment().format("YYYY-MM-DD");
+
+  get_lists.find({ date: dateToday }).then((listFound) => {
     if (!listFound) {
       return res.status(404).end();
     }

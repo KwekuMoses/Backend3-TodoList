@@ -3,7 +3,7 @@ import ListCreator from "../../list/ListCreator";
 import styled from "styled-components";
 import CreateListButton from "./buttons/CreateListButton";
 import { UserInputContext } from "../../../contexts/UserInputContext";
-import CreatedList from "../../list/CreatedList";
+import CreatedLists from "../../list/CreatedLists";
 
 const LandingPageWrapper = styled.div`
   background-color: #ffffff;
@@ -24,12 +24,6 @@ export default function Landingpage() {
   const [fetched_data, setFetched_Data] = useState([]);
   let listArray = [];
 
-  const userInputContextValue = {
-    task,
-    setTask,
-    header,
-    setHeader,
-  };
   useEffect(() => {
     fetch("/getLists")
       .then((response) => response.json())
@@ -37,15 +31,25 @@ export default function Landingpage() {
   }, []);
   for (var i in fetched_data) listArray.push([fetched_data[i]]);
 
-  console.log(listArray);
+  //console.log("list " + listArray);
+  for (let i = 0; i < listArray.length; i++) {
+    // console.log(listArray[i]);
+  }
+
+  const userInputContextValue = {
+    task,
+    setTask,
+    header,
+    setHeader,
+    listArray,
+  };
 
   return (
     <UserInputContext.Provider value={userInputContextValue}>
       <LandingPageWrapper>
         <LandingTitle>THE TO DO LIST</LandingTitle>
         <ListCreator />
-        <CreatedList />
-        <CreatedList />
+        <CreatedLists />
         <CreateListButton />
       </LandingPageWrapper>
     </UserInputContext.Provider>
