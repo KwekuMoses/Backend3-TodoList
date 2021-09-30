@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { UserInputContext } from "../../../contexts/UserInputContext";
-
+import DeleteItemButton from "./buttons/DeleteItemButton";
+import EditButton from "./buttons/EditButton";
 const Taskcomponent = styled.input`
   width: 300px;
   background-color: "#b3b3f80";
@@ -13,21 +14,25 @@ const Taskcomponent = styled.input`
     outline: none;
   }
 `;
+const TaskWrapper = styled.div`
+  border: 10px solid moccasin;
+  margin: 20px;
+`;
+
 export default function TaskComponent(props) {
   const { task, setTask } = useContext(UserInputContext);
-  const [text, setText] = useState("text");
+  const [text, setText] = useState("");
 
   let taskArray = props.taskName;
   console.log(taskArray);
   if (taskArray) {
     return taskArray.map((taskName) => {
       return (
-        <Taskcomponent
-          placeholder={text}
-          onChange={(e) => setText(e.target.value)}
-          value={taskName}
-          id="task"
-        />
+        <TaskWrapper>
+          <Taskcomponent placeholder={text} value={taskName} key={taskName} />
+          <EditButton />
+          <DeleteItemButton />
+        </TaskWrapper>
       );
     });
   } else {

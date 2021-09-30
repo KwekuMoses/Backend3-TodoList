@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import DeleteItemButton from "./buttons/DeleteItemButton";
-import EditButton from "./buttons/EditButton";
+
 import DateComponent from "./datecomponent/DateComponent";
 import { UserInputContext } from "../../../contexts/UserInputContext";
 import TaskComponent from "./TaskComponent";
 
-const TodoListitem = styled.div`
+const TodoListWrapper = styled.div`
   background-color: #ffffff;
   border: 2px solid red;
 `;
@@ -16,11 +15,9 @@ export default function Todolistitem(props) {
   const { listArray } = useContext(UserInputContext);
 
   return (
-    <TodoListitem>
+    <TodoListWrapper>
       <TaskComponent taskName={props.taskName} />
       <DateComponent date={props.date} />
-      <EditButton />
-      <DeleteItemButton />
-    </TodoListitem>
+    </TodoListWrapper>
   );
 }
