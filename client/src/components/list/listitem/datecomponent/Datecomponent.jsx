@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 const Datecomponent = styled.div`
-  background-color: orange;
+  background-color: #ffffff;
+  text-align: center;
 `;
 
-export default function DateComponent() {
-  const [dateObject] = useState(new Date());
-  const date = JSON.stringify(dateObject);
-  return <Datecomponent>{date}</Datecomponent>;
+export default function DateComponent(props) {
+  return <Datecomponent>{props.date}</Datecomponent>;
 }

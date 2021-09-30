@@ -9,14 +9,9 @@ import { UserInputContext } from "../../contexts/UserInputContext";
 import CreateListButton from "./buttons/CreateListButton";
 
 const Createdlists = styled.div`
-  border: 2px solid black;
-
-  display: grid;
-  grid-row-gap: 70px;
-  height: auto;
-  place-items: center;
-  padding: 50px;
-  grid-row: 1;
+  display: inline-block;
+  border: 1px solid black;
+  margin: 20px;
 `;
 
 export default function CreatedLists() {
@@ -25,16 +20,14 @@ export default function CreatedLists() {
   //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
-      <div key={list[0]._id}>
-        <Createdlists>
-          <h3>LIST ID: {list[0]._id}</h3>
-          <HeaderComponent listName={list[0].header} />
-          <Todolistitem taskName={list[0].task} />
-          <EditListButton />
-          <UpdateListButton />
-          <DeleteListButton />
-        </Createdlists>
-      </div>
+      <Createdlists id="CreatedList" key={list[0]._id}>
+        <h3>LIST ID: {list[0]._id}</h3>
+        <HeaderComponent listName={list[0].header} />
+        <Todolistitem taskName={list[0].tasks} date={list[0].date} />
+        <EditListButton />
+        <UpdateListButton />
+        <DeleteListButton />
+      </Createdlists>
     );
   });
 }

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Updatelistbutton = styled.button`
-  background-color: #def7de;
+  background-color: #000000;
+  color: white;
   width: 150px;
 `;
 export default function EditListButton() {

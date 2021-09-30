@@ -7,16 +7,18 @@ import { UserInputContext } from "../../../contexts/UserInputContext";
 import TaskComponent from "./TaskComponent";
 
 const TodoListitem = styled.div`
-  background-color: yellow;
+  background-color: #ffffff;
   border: 2px solid red;
 `;
+
 export default function Todolistitem(props) {
   const { header, setHeader } = useContext(UserInputContext);
+  const { listArray } = useContext(UserInputContext);
 
   return (
     <TodoListitem>
       <TaskComponent taskName={props.taskName} />
-      <DateComponent />
+      <DateComponent date={props.date} />
       <EditButton />
       <DeleteItemButton />
     </TodoListitem>

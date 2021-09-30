@@ -8,9 +8,9 @@ const ListSchema = new Schema({
     default: "kweku",
     required: true,
   },
-  task: {
-    type: String,
-    default: "kweku",
+  tasks: {
+    type: Array,
+    default: "no task",
     required: true,
   },
 
