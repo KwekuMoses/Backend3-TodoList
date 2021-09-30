@@ -22,18 +22,25 @@ const Createdlists = styled.div`
 export default function CreatedLists() {
   //* GET request
   const { listArray } = useContext(UserInputContext);
-  console.log("created " + listArray);
+
+  for (let i = 0; i < listArray.length; i++) {
+    console.log(listArray[i]);
+  }
+
+  //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
-      <Createdlists>
-        {list.task}
-        <HeaderComponent />
-        <Todolistitem />
-        <Todolistitem />
-        <EditListButton />
-        <UpdateListButton />
-        <DeleteListButton />
-      </Createdlists>
+      <div>
+        {list[0]._id}
+        <Createdlists>
+          <HeaderComponent />
+          <Todolistitem />
+          <Todolistitem />
+          <EditListButton />
+          <UpdateListButton />
+          <DeleteListButton />
+        </Createdlists>
+      </div>
     );
   });
 }
