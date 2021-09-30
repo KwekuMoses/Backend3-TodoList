@@ -20,22 +20,16 @@ const Createdlists = styled.div`
 `;
 
 export default function CreatedLists() {
-  //* GET request
   const { listArray } = useContext(UserInputContext);
-
-  for (let i = 0; i < listArray.length; i++) {
-    console.log(listArray[i]);
-  }
 
   //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
-      <div>
-        {list[0]._id}
+      <div key={list[0]._id}>
         <Createdlists>
-          <HeaderComponent />
-          <Todolistitem />
-          <Todolistitem />
+          <h3>LIST ID: {list[0]._id}</h3>
+          <HeaderComponent listName={list[0].header} />
+          <Todolistitem taskName={list[0].task} />
           <EditListButton />
           <UpdateListButton />
           <DeleteListButton />

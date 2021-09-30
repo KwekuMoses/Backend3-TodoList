@@ -4,17 +4,25 @@ import { UserInputContext } from "../../../contexts/UserInputContext";
 
 const Taskcomponent = styled.input`
   width: 300px;
+  background-color: "#b3b3f80";
+  border: none;
+  text-align: center;
+  &:focus {
+    border: none;
+    outline: none;
+  }
 `;
-export default function TaskComponent() {
+export default function TaskComponent(props) {
   const { task, setTask } = useContext(UserInputContext);
   const [text, setText] = useState("text");
-  //* GET
+
   return (
     <Taskcomponent
       placeholder={text}
       onChange={(e) => setText(e.target.value)}
-      value={text}
+      value={props.taskName}
       id="task"
+      readOnly
     />
   );
 }

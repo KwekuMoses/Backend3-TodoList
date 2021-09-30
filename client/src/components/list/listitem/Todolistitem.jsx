@@ -10,12 +10,12 @@ const TodoListitem = styled.div`
   background-color: yellow;
   border: 2px solid red;
 `;
-export default function Todolistitem() {
+export default function Todolistitem(props) {
   const { header, setHeader } = useContext(UserInputContext);
 
   return (
     <TodoListitem>
-      <TaskComponent />
+      <TaskComponent taskName={props.taskName} />
       <DateComponent />
       <EditButton />
       <DeleteItemButton />
