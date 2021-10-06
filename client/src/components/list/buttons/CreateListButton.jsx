@@ -21,7 +21,7 @@ export default function CreateListButton() {
     };
 
     axios({
-      url: "/saveTask",
+      url: "/createList",
       method: "POST",
       data: payload,
     })
@@ -32,7 +32,6 @@ export default function CreateListButton() {
       .catch(() => {
         console.log("data been not sent");
       });
-    debugger;
   };
 
   return <Createlistbutton onClick={submit}>Create List</Createlistbutton>;

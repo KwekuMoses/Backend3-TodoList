@@ -4,7 +4,7 @@ import { UserInputContext } from "../../../contexts/UserInputContext";
 
 const Header = styled.input`
   background-color: "#b3b3f80";
-  border: none;
+  border: 2px solid grey;
   width: 150px;
   &:focus {
     border: none;
@@ -18,9 +18,8 @@ export default function HeaderComponent(props) {
   return (
     <Header
       value={props.listName}
-      placeholder={header}
+      placeholder="Set a header (ง •_•)ง"
       onChange={(e) => setHeader(e.target.value)}
-      readOnly
     />
   );
 }

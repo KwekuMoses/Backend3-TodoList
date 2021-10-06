@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const get_lists = require("./models/listmodel");
+const listModel = require("./models/listmodel");
+const taskModel = require("./models/taskmodel");
 const moment = require("moment");
-console.log("test");
 const app = express();
 
 // create application/json parser
@@ -28,9 +28,7 @@ db.once("open", () => {
  */
 
 app.get("/getLists", (request, response) => {
-  let dateToday = moment().format("YYYY-MM-DD");
-
-  get_lists.find().then((listsFound) => {
+  listModel.find().then((listsFound) => {
     if (!listsFound) {
       return res.status(404).end();
     }
@@ -50,20 +48,35 @@ app.get("/getListsToday", (request, response) => {
   });
 });
 
-app.post("/saveTask", jsonParser, (request, response) => {
+//* Create a List
+app.post("/createList", jsonParser, (request, response) => {
   console.log(request.body);
 
-  const newList = new list({
+  const listmodel = new listModel({
     header: request.body.header,
-    task: request.body.task,
   });
-  //console.log(request.body.name)
-  newList.save((error) => {
+
+  listmodel.save((error) => {
     if (error) {
       console.log(error);
     }
   });
-  response.end("list created");
+  response.end("task created");
+});
+//* Save a task
+app.post("/saveTask", jsonParser, (request, response) => {
+  console.log(request.body);
+
+  const taskmodel = new taskModel({
+    task: request.body.task,
+  });
+
+  taskmodel.save((error) => {
+    if (error) {
+      console.log(error);
+    }
+  });
+  response.end("task created");
 });
 
 const port = 5000;
