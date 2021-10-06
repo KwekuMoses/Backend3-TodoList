@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DateComponent from "./datecomponent/DateComponent";
 import { UserInputContext } from "../../../contexts/UserInputContext";
-import TaskComponent from "./TaskComponent";
+import TaskComponent from "./CreatedTasksComponent";
 
 const TodoListWrapper = styled.div`
   background-color: #ffffff;

@@ -36,15 +36,16 @@ app.get("/getLists", (request, response) => {
     return response.status(200).json(listsFound);
   });
 });
-app.get("/getListsToday", (request, response) => {
-  let dateToday = moment().format("YYYY-MM-DD");
 
-  get_lists.find({ date: dateToday }).then((listFound) => {
-    if (!listFound) {
+/*Get tasks where belongsTo_listId = id */
+app.get("/getTasks", (request, response) => {
+  console.log(request.body);
+  taskModel.find({}).then((tasksFound) => {
+    if (!tasksFound) {
       return res.status(404).end();
     }
-    console.log("listfound " + listFound);
-    return response.status(200).json(listFound);
+    console.log("listfound " + tasksFound);
+    return response.status(200).json(tasksFound);
   });
 });
 
