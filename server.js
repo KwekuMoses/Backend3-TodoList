@@ -66,10 +66,11 @@ app.post("/createList", jsonParser, (request, response) => {
 
 /*Create a task*/
 app.post("/createTask", jsonParser, (request, response) => {
-  console.log(request.body);
+  console.log(request.body.task);
 
   const taskmodel = new taskModel({
     task: request.body.task,
+    belongsTo_listId: request.body.belongsTo_listId,
   });
 
   taskmodel.save((error) => {

@@ -8,36 +8,16 @@ const CREATE_TASK_INPUT = styled.input`
   border: 2px solid purple;
 `;
 
-export default function TaskCreatorComponent() {
+export default function TaskCreatorComponent(props) {
   const { task, setTask } = useContext(UserInputContext);
-  console.log(task);
-  const submit = (e) => {
-    e.preventDefault();
-    const payload = {
-      // task: task,
-      //  date: date,
-    };
 
-    axios({
-      url: "/createTask",
-      method: "POST",
-      data: payload,
-    })
-      .then(() => {
-        console.log("data been sent");
-        window.location.href = "/";
-      })
-      .catch(() => {
-        console.log("data been not sent");
-      });
-  };
-
+  console.log();
   return (
     <React.Fragment>
       <CREATE_TASK_INPUT
         onChange={(e) => setTask(e.target.value)}
       ></CREATE_TASK_INPUT>
-      <CreateTaskButton />
+      <CreateTaskButton belongsTo_listId={props.belongsTo_listId} />
     </React.Fragment>
   );
 }

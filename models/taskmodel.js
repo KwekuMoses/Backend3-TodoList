@@ -8,6 +8,11 @@ const TaskSchema = new Schema({
     default: "no task",
     required: true,
   },
+  belongsTo_listId: {
+    type: String,
+    default: "ID HERE",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("task", TaskSchema);

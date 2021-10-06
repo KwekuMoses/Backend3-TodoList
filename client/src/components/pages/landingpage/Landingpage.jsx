@@ -38,6 +38,7 @@ const CreatedListsWrapper = styled.div`
 export default function Landingpage() {
   const [task, setTask] = useState("set Task");
   const [header, setHeader] = useState("header");
+  const [listId, setListId] = useState();
   const [fetched_data, setFetched_Data] = useState([]);
   let listArray = [];
 
@@ -59,6 +60,8 @@ export default function Landingpage() {
     header,
     setHeader,
     listArray,
+    listId,
+    setListId,
   };
 
   return (
