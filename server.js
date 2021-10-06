@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const get_lists = require("./models/listmodel");
 const moment = require("moment");
-
+console.log("test");
 const app = express();
 
 // create application/json parser
