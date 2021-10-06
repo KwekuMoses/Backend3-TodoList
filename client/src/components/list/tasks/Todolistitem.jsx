@@ -16,8 +16,7 @@ export default function Todolistitem(props) {
 
   return (
     <TodoListWrapper>
-      <TaskComponent taskName={props.taskName} key={props.taskName} />
-      <DateComponent date={props.date} />
+      <p>THE ITEM WILL APPEAR HERE</p>
     </TodoListWrapper>
   );
 }

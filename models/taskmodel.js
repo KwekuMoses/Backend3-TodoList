@@ -3,15 +3,9 @@ const Schema = mongoose.Schema;
 const moment = require("moment");
 
 const TaskSchema = new Schema({
-  tasks: {
-    type: Array,
-    default: "no task",
-    required: true,
-  },
-
-  date: {
+  task: {
     type: String,
-    default: () => moment().format("YYYY-MM-DD"),
+    default: "no task",
     required: true,
   },
 });

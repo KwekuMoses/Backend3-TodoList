@@ -1,9 +1,10 @@
 import React from "react";
-import Todolistitem from "./listitem/Todolistitem";
+import Todolistitem from "./tasks/Todolistitem";
 import styled from "styled-components";
-import HeaderComponent from "./listitem/HeaderComponent";
+import HeaderComponent from "./HeaderComponent";
 import CreateListButton from "./buttons/CreateListButton";
-
+import TaskComponent from "./tasks/TaskComponent";
+import TaskCreatorComponent from "./tasks/TaskCreatorComponent";
 const Listcreator = styled.div`
   background-color: #ffffff;
   border: 2px solid black;
@@ -21,7 +22,6 @@ export default function ListCreator() {
   return (
     <Listcreator>
       <HeaderComponent />
-      <Todolistitem />
       <CreateListButton />
     </Listcreator>
   );

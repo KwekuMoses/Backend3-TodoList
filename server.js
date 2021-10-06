@@ -48,7 +48,7 @@ app.get("/getListsToday", (request, response) => {
   });
 });
 
-//* Create a List
+/* Create a List */
 app.post("/createList", jsonParser, (request, response) => {
   console.log(request.body);
 
@@ -63,8 +63,9 @@ app.post("/createList", jsonParser, (request, response) => {
   });
   response.end("task created");
 });
-//* Save a task
-app.post("/saveTask", jsonParser, (request, response) => {
+
+/*Create a task*/
+app.post("/createTask", jsonParser, (request, response) => {
   console.log(request.body);
 
   const taskmodel = new taskModel({

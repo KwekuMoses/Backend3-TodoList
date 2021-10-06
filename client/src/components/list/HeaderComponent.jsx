@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { UserInputContext } from "../../../contexts/UserInputContext";
+import { UserInputContext } from "../../contexts/UserInputContext";
 
 const Header = styled.input`
   background-color: "#b3b3f80";

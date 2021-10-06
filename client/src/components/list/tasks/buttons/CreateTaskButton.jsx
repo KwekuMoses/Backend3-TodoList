@@ -1,24 +1,23 @@
 import React, { useContext } from "react";
-import { UserInputContext } from "../../../contexts/UserInputContext";
+import { UserInputContext } from "../../../../contexts/UserInputContext";
 import styled from "styled-components";
 import axios from "axios";
 
-const Createlistbutton = styled.button`
+const Createtaskbutton = styled.button`
   background-color: black;
   color: white;
   width: 150px;
 `;
-
-export default function CreateListButton() {
-  const { header, setHeader } = useContext(UserInputContext);
+export default function CreateTaskButton() {
+  const { task, setTask } = useContext(UserInputContext);
   const submit = (e) => {
     e.preventDefault();
     const payload = {
-      header: header,
+      task: task,
     };
 
     axios({
-      url: "/createList",
+      url: "/createTask",
       method: "POST",
       data: payload,
     })
@@ -31,5 +30,5 @@ export default function CreateListButton() {
       });
   };
 
-  return <Createlistbutton onClick={submit}>Create List</Createlistbutton>;
+  return <Createtaskbutton onClick={submit}>Add Task</Createtaskbutton>;
 }
