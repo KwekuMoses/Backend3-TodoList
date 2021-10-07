@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ListCreator from "../../list/ListCreator";
 import styled from "styled-components";
-import CreateListButton from "./buttons/CreateListButton";
 import { UserInputContext } from "../../../contexts/UserInputContext";
 import CreatedLists from "../../list/CreatedLists";
 
@@ -40,6 +39,7 @@ export default function Landingpage() {
   const [header, setHeader] = useState("header");
   const [listId, setListId] = useState();
   const [fetched_data, setFetched_Data] = useState([]);
+  const [fetched_Tasks, setFetched_Tasks] = useState([]);
   let listArray = [];
 
   useEffect(() => {
@@ -62,6 +62,8 @@ export default function Landingpage() {
     listArray,
     listId,
     setListId,
+    fetched_Tasks,
+    setFetched_Tasks,
   };
 
   return (

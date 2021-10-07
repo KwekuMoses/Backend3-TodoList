@@ -1,10 +1,7 @@
 import React from "react";
-import Todolistitem from "./tasks/Todolistitem";
 import styled from "styled-components";
 import HeaderComponent from "./HeaderComponent";
 import CreateListButton from "./buttons/CreateListButton";
-import TaskComponent from "./tasks/CreatedTasksComponent";
-import TaskCreatorComponent from "./tasks/TaskCreatorComponent";
 const Listcreator = styled.div`
   background-color: #ffffff;
   border: 2px solid black;

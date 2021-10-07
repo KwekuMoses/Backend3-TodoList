@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-import Todolistitem from "./tasks/Todolistitem";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import HeaderComponent from "./HeaderComponent";
 import DeleteListButton from "./buttons/DeleteListButton";
 import EditListButton from "./buttons/EditListButton";
 import UpdateListButton from "./buttons/UpdateListButton";
 import { UserInputContext } from "../../contexts/UserInputContext";
-import CreateListButton from "./buttons/CreateListButton";
 import TaskCreatorComponent from "./tasks/TaskCreatorComponent";
 import CreatedTaskComponent from "./tasks/CreatedTasksComponent";
 
@@ -16,21 +14,18 @@ const Createdlists = styled.div`
   margin: 20px;
 `;
 
-export default function CreatedLists() {
+export default function CreatedLists(props) {
   const { listArray } = useContext(UserInputContext);
-  const { list, setListId } = useContext(UserInputContext);
-  const [fetchedData, setFetchedData] = useState([]);
-  console.log(fetchedData);
 
   //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
-      <Createdlists id="CreatedList" key={list[0]._id}>
+      <Createdlists id="CreatedList" key={list[0].header}>
         <h3>LIST ID: {list[0]._id}</h3>
         <HeaderComponent listName={list[0].header} />
         {/* <Todolistitem /> */}
-        <CreatedTaskComponent belongsTo_listId={list[0]._id} />
-        <TaskCreatorComponent belongsTo_listId={list[0]._id} />
+        <CreatedTaskComponent belongsTo_listId={list[0]._id} key={props.Key} />
+        <TaskCreatorComponent belongsTo_listId={list[0]._id} key={list[0]} />
         <EditListButton />
         <UpdateListButton />
         <DeleteListButton />

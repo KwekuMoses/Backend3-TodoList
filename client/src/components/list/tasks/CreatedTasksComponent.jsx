@@ -1,45 +1,50 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
+import DeleteTaskButton from "./buttons/DeleteTaskButton";
+import EditTaskButton from "./buttons/EditTaskButton";
 import { UserInputContext } from "../../../contexts/UserInputContext";
-import DeleteItemButton from "./buttons/DeleteItemButton";
-import EditButton from "./buttons/EditButton";
-import axios from "axios";
 
-const Taskcomponent = styled.div`
-  width: 300px;
+const TaskItemComponent = styled.div`
+  width: auto;
   background-color: "#b3b3f80";
   border: 5px solid black;
-  text-align: center;
   display: block;
+`;
+const TaskText = styled.p`
+  color: pink;
+  display: inline;
+  text-align: left;
 `;
 const TaskWrapper = styled.div`
   border: 10px solid moccasin;
   margin: 20px;
 `;
 
-export default function TaskComponent(props) {
-  const { listArray } = useContext(UserInputContext);
-  const [fetchedData, setFetchedData] = useState([]);
+export default function CreatedTaskComponent(props) {
+  const { fetched_Tasks, setFetched_Tasks } = useContext(UserInputContext);
   let this_listId = props.belongsTo_listId;
-  console.log(fetchedData);
-  console.log(props.belongsTo_listId);
-
   let filtered_tasks = [];
 
-  for (let i = 0; i < fetchedData.length; i++) {
-    console.log(this_listId + " : " + fetchedData[i].belongsTo_listId);
-    if (this_listId === fetchedData[i].belongsTo_listId) {
-      filtered_tasks.push(fetchedData[i].task);
+  for (let i = 0; i < fetched_Tasks.length; i++) {
+    if (this_listId === fetched_Tasks[i].belongsTo_listId) {
+      filtered_tasks.push(fetched_Tasks[i]);
     }
   }
-  console.log(filtered_tasks + "  " + this_listId + "   HERE");
+
   useEffect(() => {
     fetch("/getTasks")
       .then((response) => response.json())
-      .then((tasks) => setFetchedData(tasks));
+      .then((tasks) => setFetched_Tasks(tasks));
   }, []);
-  //console.log("created " + listArray);
   return filtered_tasks.map((task) => {
-    return <p>{JSON.stringify(task)}</p>;
+    return (
+      <React.Fragment key={JSON.stringify(task)}>
+        <TaskItemComponent key={task}>
+          <TaskText> {JSON.stringify(task.task)} </TaskText>{" "}
+          <DeleteTaskButton key={task.id} task_id={task._id} />
+          <EditTaskButton key={task.id} task_id={task._id} />
+        </TaskItemComponent>{" "}
+      </React.Fragment>
+    );
   });
 }

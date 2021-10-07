@@ -81,6 +81,16 @@ app.post("/createTask", jsonParser, (request, response) => {
   });
   response.end("task created");
 });
+/*Delete a task*/
+app.delete("/deleteTask", jsonParser, (request, response) => {
+  let id = request.body.id;
+  taskModel.findByIdAndDelete(id).exec((error) => {
+    if (error) {
+      return handleError(error);
+    }
+  });
+  response.end("Task Deleted!");
+});
 
 const port = 5000;
 

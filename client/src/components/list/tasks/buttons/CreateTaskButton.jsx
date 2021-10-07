@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserInputContext } from "../../../../contexts/UserInputContext";
 import styled from "styled-components";
 import axios from "axios";
@@ -9,7 +9,7 @@ const Createtaskbutton = styled.button`
   width: 150px;
 `;
 export default function CreateTaskButton(props) {
-  const { task, setTask } = useContext(UserInputContext);
+  const { task } = useContext(UserInputContext);
   let listId = props.belongsTo_listId;
   const submit = (e) => {
     e.preventDefault();

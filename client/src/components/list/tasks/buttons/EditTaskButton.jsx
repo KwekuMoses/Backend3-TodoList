@@ -8,16 +8,11 @@ const Editbutton = styled.button`
 
 function change_task(e) {
   e.target.parentNode.firstChild.innerHTML = prompt(
-    "prompt - Please enter your name"
+    "prompt - Please Change Your Task Here"
   );
 
-  alert(
-    "alert - Hello, " +
-      e.target.parentNode.firstChild.innerHTML +
-      "! You can't enter text here!"
-  );
+  alert("Great Your Task has Changed ");
 
-  //var clickedOk = confirm("confirm - Do you understand now?");
   console.log(e.target.parentNode.firstChild.innerHTML);
 }
 

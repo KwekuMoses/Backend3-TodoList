@@ -10,7 +10,7 @@ const Createlistbutton = styled.button`
 `;
 
 export default function CreateListButton() {
-  const { header, setHeader } = useContext(UserInputContext);
+  const { header } = useContext(UserInputContext);
   const submit = (e) => {
     e.preventDefault();
     const payload = {

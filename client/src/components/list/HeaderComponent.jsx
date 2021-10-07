@@ -13,7 +13,7 @@ const Header = styled.input`
 `;
 
 export default function HeaderComponent(props) {
-  const { header, setHeader } = useContext(UserInputContext);
+  const { setHeader } = useContext(UserInputContext);
 
   return (
     <Header
