@@ -26,9 +26,10 @@ export default function CreatedLists(props) {
         {/* <Todolistitem /> */}
         <CreatedTaskComponent belongsTo_listId={list[0]._id} key={props.Key} />
         <TaskCreatorComponent belongsTo_listId={list[0]._id} key={list[0]} />
-        <EditListButton />
+        <br />
+        <EditListButton list_id={list[0]._id} />
+        <DeleteListButton list_id={list[0]._id} />
         <UpdateListButton />
-        <DeleteListButton />
       </Createdlists>
     );
   });

@@ -8,7 +8,7 @@ const Editbutton = styled.button`
 `;
 
 export default function EditButton(props) {
-  function change_task(e) {
+  function edit_task(e) {
     /* Set The task Elements innerHTML to the prompt input*/
     /* e.target.parentNode.firstChild.innerHTML = prompt(
       "prompt - Please Change Your Task Here"
@@ -41,5 +41,5 @@ export default function EditButton(props) {
       });
   }
 
-  return <Editbutton onClick={change_task}>EDIT</Editbutton>;
+  return <Editbutton onClick={edit_task}>EDIT</Editbutton>;
 }

@@ -69,7 +69,7 @@ export default function Landingpage() {
   return (
     <UserInputContext.Provider value={userInputContextValue}>
       <LandingPageWrapper>
-        <LandingTitle>THE TO DO LIST</LandingTitle>
+        <LandingTitle>THE TO DO LIST ლ(╹◡╹ლ)</LandingTitle>
         <ListCreator />
         <CreatedListsWrapper>
           <CreatedLists />

@@ -87,9 +87,32 @@ app.put("/updateTask", jsonParser, (request, response) => {
   response.end("Task Updated");
 });
 /*Delete a task*/
+
+/*Update a list*/
+app.put("/updateList", jsonParser, (request, response) => {
+  let id = request.body.id;
+  let header = request.body.header;
+  listModel.findByIdAndUpdate(id, { header: header }).exec((error) => {
+    if (error) {
+      return handleError(error);
+    }
+  });
+  response.end("Task Updated");
+});
+/*Delete a task*/
 app.delete("/deleteTask", jsonParser, (request, response) => {
   let id = request.body.id;
   taskModel.findByIdAndDelete(id).exec((error) => {
+    if (error) {
+      return handleError(error);
+    }
+  });
+  response.end("Task Deleted!");
+});
+/*Delete a list*/
+app.delete("/deleteList", jsonParser, (request, response) => {
+  let id = request.body.id;
+  listModel.findByIdAndDelete(id).exec((error) => {
     if (error) {
       return handleError(error);
     }
