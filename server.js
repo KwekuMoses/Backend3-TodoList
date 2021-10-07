@@ -32,27 +32,22 @@ app.get("/getLists", (request, response) => {
     if (!listsFound) {
       return res.status(404).end();
     }
-    //console.log("listfound " + listsFound);
     return response.status(200).json(listsFound);
   });
 });
 
 /*Get tasks where belongsTo_listId = id */
 app.get("/getTasks", (request, response) => {
-  console.log(request.body);
   taskModel.find({}).then((tasksFound) => {
     if (!tasksFound) {
       return res.status(404).end();
     }
-    console.log("listfound " + tasksFound);
     return response.status(200).json(tasksFound);
   });
 });
 
 /* Create a List */
 app.post("/createList", jsonParser, (request, response) => {
-  console.log(request.body);
-
   const listmodel = new listModel({
     header: request.body.header,
   });
@@ -67,8 +62,6 @@ app.post("/createList", jsonParser, (request, response) => {
 
 /*Create a task*/
 app.post("/createTask", jsonParser, (request, response) => {
-  console.log(request.body.task);
-
   const taskmodel = new taskModel({
     task: request.body.task,
     belongsTo_listId: request.body.belongsTo_listId,
@@ -80,6 +73,18 @@ app.post("/createTask", jsonParser, (request, response) => {
     }
   });
   response.end("task created");
+});
+
+/*Update a task*/
+app.put("/updateTask", jsonParser, (request, response) => {
+  let id = request.body.id;
+  let task = request.body.task;
+  taskModel.findByIdAndUpdate(id, { task: task }).exec((error) => {
+    if (error) {
+      return handleError(error);
+    }
+  });
+  response.end("Task Updated");
 });
 /*Delete a task*/
 app.delete("/deleteTask", jsonParser, (request, response) => {

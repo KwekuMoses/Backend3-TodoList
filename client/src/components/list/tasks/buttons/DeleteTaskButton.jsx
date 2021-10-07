@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { UserInputContext } from "../../../../contexts/UserInputContext";
 
 import axios from "axios";
 
@@ -10,7 +9,6 @@ const Deletebutton = styled.button`
 `;
 
 export default function DeleteTaskButton(props) {
-  const { fetched_Tasks, setFetched_Tasks } = useContext(UserInputContext);
   const deleteTask = (e) => {
     let this_task_id = props.task_id;
 
