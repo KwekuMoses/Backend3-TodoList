@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Landingpage from "./components/pages/landingpage/Landingpage.jsx";
+import ListPage from "./components/pages/landingpage/ListPage.jsx";
 
 class App extends Component {
   render() {
-    return <Landingpage />;
+    return <ListPage />;
   }
 }
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { UserInputContext } from "../../../contexts/UserInputContext";
 import CreatedLists from "../../list/CreatedLists";
 
-const LandingPageWrapper = styled.div`
+const ListPageWrapper = styled.div`
   background-color: #ffffff;
   display: grid;
   grid-template-columns: 1fr 8fr;
@@ -13,7 +13,7 @@ const LandingPageWrapper = styled.div`
   height: 200vh;
 `;
 
-const LandingTitle = styled.div`
+const ListPageTitle = styled.div`
   place-self: start;
   grid-row: 1;
   grid-column: 1;
@@ -68,13 +68,13 @@ export default function Landingpage() {
 
   return (
     <UserInputContext.Provider value={userInputContextValue}>
-      <LandingPageWrapper>
-        <LandingTitle>THE TO DO LIST ლ(╹◡╹ლ)</LandingTitle>
+      <ListPageWrapper>
+        <ListPageTitle>THE TO DO LIST ლ(╹◡╹ლ)</ListPageTitle>
         <ListCreator />
         <CreatedListsWrapper>
           <CreatedLists />
         </CreatedListsWrapper>
-      </LandingPageWrapper>
+      </ListPageWrapper>
     </UserInputContext.Provider>
   );
 }
