@@ -20,7 +20,7 @@ export default function CreatedLists(props) {
   //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
-      <Createdlists id="CreatedList" key={list[0].header}>
+      <Createdlists id="CreatedList" key={list[0]._id}>
         <h3>LIST ID: {list[0]._id}</h3>
         <HeaderComponent listName={list[0].header} />
         {/* <Todolistitem /> */}
