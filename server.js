@@ -23,17 +23,15 @@ db.once("open", () => {
   console.log("Connected to mongoDb");
 });
 
-/**
- * Get where greater than 3
- */
+/*Register a user*/
 
-app.get("/getLists", (request, response) => {
-  listModel.find().then((listsFound) => {
-    if (!listsFound) {
-      return res.status(404).end();
-    }
-    return response.status(200).json(listsFound);
-  });
+app.post("/register", (request, response) => {
+  console.log("route working");
+});
+
+/*Login a user*/
+app.post("/login", (request, response) => {
+  console.log("route working");
 });
 
 /*Get tasks where belongsTo_listId = id */
