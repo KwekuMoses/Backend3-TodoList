@@ -34,7 +34,7 @@ const CreatedListsWrapper = styled.div`
   grid-row: 1;
 `;
 
-export default function Landingpage() {
+export default function ListPage() {
   const [task, setTask] = useState("set Task");
   const [header, setHeader] = useState("header");
   const [listId, setListId] = useState();
