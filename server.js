@@ -31,9 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 
 /*Register a user*/
 /*Second Parameter in bcrypt.hash is salt rounds, e.g. how many times to hash the password*/
-app.post("/register", jsonParser, (request, response) => {
+app.post("/register", jsonParser, async (request, response) => {
   let email = request.body.email;
   let password = request.body.password;
+  let hashedPassword = await bcrypt.hash(password, 10);
+
   let errors = [];
   console.log(
     `routes/users.js -> Email: ${request.body.email}, Password: ${request.body.password}`
@@ -52,7 +54,7 @@ app.post("/register", jsonParser, (request, response) => {
     //*Vi skapar en User med hjälp av vår model för users som ligger i models/users.js.
     const newUser = new userModel({
       email: email,
-      password: password,
+      password: hashedPassword,
     });
 
     newUser.save((error) => {
