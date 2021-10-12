@@ -35,46 +35,13 @@ const CreatedListsWrapper = styled.div`
 `;
 
 export default function ListPage() {
-  const [task, setTask] = useState("set Task");
-  const [header, setHeader] = useState("header");
-  const [listId, setListId] = useState();
-  const [fetched_data, setFetched_Data] = useState([]);
-  const [fetched_Tasks, setFetched_Tasks] = useState([]);
-  let listArray = [];
-
-  useEffect(() => {
-    fetch("/getLists")
-      .then((response) => response.json())
-      .then((sessions) => setFetched_Data(sessions));
-  }, []);
-  for (var i in fetched_data) listArray.push([fetched_data[i]]);
-
-  //console.log("list " + listArray);
-  for (let i = 0; i < listArray.length; i++) {
-    // console.log(listArray[i]);
-  }
-
-  const userInputContextValue = {
-    task,
-    setTask,
-    header,
-    setHeader,
-    listArray,
-    listId,
-    setListId,
-    fetched_Tasks,
-    setFetched_Tasks,
-  };
-
   return (
-    <UserInputContext.Provider value={userInputContextValue}>
-      <ListPageWrapper>
-        <ListPageTitle>THE TO DO LIST ლ(╹◡╹ლ)</ListPageTitle>
-        <ListCreator />
-        <CreatedListsWrapper>
-          <CreatedLists />
-        </CreatedListsWrapper>
-      </ListPageWrapper>
-    </UserInputContext.Provider>
+    <ListPageWrapper>
+      <ListPageTitle>THE TO DO LIST ლ(╹◡╹ლ)</ListPageTitle>
+      <ListCreator />
+      <CreatedListsWrapper>
+        <CreatedLists />
+      </CreatedListsWrapper>
+    </ListPageWrapper>
   );
 }

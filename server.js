@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const listModel = require("./models/listmodel");
 const taskModel = require("./models/taskmodel");
+const userModel = require("./models/usermodel");
 const moment = require("moment");
 const app = express();
+const bcrypt = require("bcrypt");
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -23,10 +25,54 @@ db.once("open", () => {
   console.log("Connected to mongoDb");
 });
 
-/*Register a user*/
+/*Makes it possible to access form data in URL */
+/* Keeping this because it will make it easier to access the form-data */
+app.use(express.urlencoded({ extended: false }));
 
-app.post("/register", (request, response) => {
-  console.log("route working");
+/*Register a user*/
+/*Second Parameter in bcrypt.hash is salt rounds, e.g. how many times to hash the password*/
+app.post("/register", jsonParser, (request, response) => {
+  let errors = [];
+  console.log(
+    `routes/users.js -> Email: ${request.body.email}, Password: ${request.body.password}`
+  );
+
+  if (!email || !password) {
+    errors.push({ msg: "Please fill out all fields" });
+  }
+
+  if (password.length < 6) {
+    errors.push({ msg: "Use at least 6 characters for your password" });
+  }
+
+  if (errors.length > 0) {
+    console.log("No Errors");
+  } else {
+    //*Vi skapar en User med hjälp av vår model för users som ligger i models/users.js.
+    const newUser = new userModel({
+      email: email,
+      password: password,
+    });
+
+    newUser.save((error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+
+    bcrypt.hash(password, 10, function (error, hash) {
+      // Store hash in your password DB.
+      newUser.password = hash;
+
+      newUser
+        .save()
+        .then((value) => {
+          request.flash("success_msg", "You have been registered!");
+          response.redirect("/users/login");
+        })
+        .catch((error) => console.log(error));
+    });
+  }
 });
 
 /*Login a user*/

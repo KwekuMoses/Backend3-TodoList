@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { UserInputContext } from "../../../contexts/UserInputContext";
 import styled from "styled-components";
 import axios from "axios";
@@ -11,6 +12,7 @@ const Createlistbutton = styled.button`
 
 export default function CreateListButton() {
   const { header } = useContext(UserInputContext);
+
   const submit = (e) => {
     e.preventDefault();
     const payload = {
@@ -24,7 +26,7 @@ export default function CreateListButton() {
     })
       .then(() => {
         console.log("data been sent");
-        window.location.href = "/";
+        window.location.href = "";
       })
       .catch(() => {
         console.log("data been not sent");

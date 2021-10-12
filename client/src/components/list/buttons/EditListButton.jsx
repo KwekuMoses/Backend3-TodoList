@@ -35,7 +35,7 @@ export default function EditListButton(props) {
     })
       .then(() => {
         console.log("data been sent");
-        window.location.href = "/";
+        window.location.href = "";
       })
       .catch(() => {
         console.log("data been not sent");
