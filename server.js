@@ -34,6 +34,16 @@ app.post("/login", (request, response) => {
   console.log("route working");
 });
 
+/*Get All Lists */
+app.get("/getLists", (request, response) => {
+  listModel.find().then((listsFound) => {
+    if (!listsFound) {
+      return res.status(404).end();
+    }
+    return response.status(200).json(listsFound);
+  });
+});
+
 /*Get tasks where belongsTo_listId = id */
 app.get("/getTasks", (request, response) => {
   taskModel.find({}).then((tasksFound) => {

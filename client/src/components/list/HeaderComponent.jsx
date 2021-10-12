@@ -17,7 +17,7 @@ export default function HeaderComponent(props) {
 
   return (
     <Header
-      value={props.listName}
+      value={props.listName || undefined}
       placeholder="Set a header (ง •_•)ง"
       onChange={(e) => setHeader(e.target.value)}
     />
