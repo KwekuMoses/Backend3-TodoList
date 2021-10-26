@@ -129,8 +129,6 @@ app.post("/test", jsonParser, async (request, response) => {
       },
       {
         date: moment().format("YYYY-MM-DD HH:mm"),
-      },
-      {
         $push: {
           tasks: {
             task: task,

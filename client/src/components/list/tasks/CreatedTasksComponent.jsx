@@ -32,10 +32,11 @@ export default function CreatedTaskComponent(props) {
   }
 
   useEffect(() => {
-    fetch("/getTasks")
+    fetch("/GetTasks")
       .then((response) => response.json())
-      .then((tasks) => setFetched_Tasks(tasks));
+      .then((task) => setFetched_Tasks(task));
   }, []);
+
   return filtered_tasks.map((task) => {
     return (
       <React.Fragment key={JSON.stringify(task)}>
