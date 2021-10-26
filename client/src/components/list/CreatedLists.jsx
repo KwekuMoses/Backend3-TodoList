@@ -30,6 +30,7 @@ export default function CreatedLists(props) {
         <EditListButton list_id={list[0]._id} />
         <DeleteListButton list_id={list[0]._id} />
         <UpdateListButton />
+        <h3>Last Edited {list[0].date}</h3>
       </Createdlists>
     );
   });

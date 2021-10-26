@@ -8,9 +8,13 @@ const ListSchema = new Schema({
     default: "kweku",
     required: true,
   },
+  tasks: {
+    type: Array,
+    required: false,
+  },
   date: {
     type: String,
-    default: () => moment().format("YYYY-MM-DD"),
+    default: () => moment().format("YYYY-MM-DD HH:mm"),
     required: true,
   },
 });

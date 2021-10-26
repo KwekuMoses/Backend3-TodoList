@@ -118,6 +118,32 @@ app.post("/createTask", jsonParser, (request, response) => {
   });
   response.end("task created");
 });
+/*Create a task*/
+app.post("/test", jsonParser, async (request, response) => {
+  let id = request.body.belongsTo_listId;
+  let task = request.body.task;
+  try {
+    await listModel.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        date: moment().format("YYYY-MM-DD HH:mm"),
+      },
+      {
+        $push: {
+          tasks: {
+            task: task,
+          },
+        },
+      }
+    );
+  } catch {
+    console.log("error");
+  }
+
+  response.end("task created");
+});
 
 /*Update a task*/
 app.put("/updateTask", jsonParser, (request, response) => {
