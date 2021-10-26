@@ -9,7 +9,8 @@ const TaskSchema = new Schema({
     required: true,
   },
   belongsTo_listId: {
-    type: String,
+    //type: String,
+    type: mongoose.Schema.Types.ObjectId,
     default: "ID HERE",
     required: true,
   },
