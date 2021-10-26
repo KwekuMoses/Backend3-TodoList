@@ -16,7 +16,7 @@ export default function DeleteTaskButton(props) {
 
     const payload = {
       listId: listId,
-      id: taskId,
+      taskId: taskId,
     };
 
     axios({

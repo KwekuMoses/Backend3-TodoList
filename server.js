@@ -191,19 +191,7 @@ app.put("/updateList", jsonParser, (request, response) => {
 app.delete("/deleteTask", jsonParser, (req, res) => {
   let taskId = req.body.taskId;
   let listId = req.body.listId;
-  console.log(typeof req.body.listId);
-  // listModel.findOneAndUpdate(
-  //   {
-  //     _id: listid,
-  //   },
-  //   {
-  //     $pull: {
-  //       tasks: {
-  //         _id: "6178525dfcf9ce7dfa7bddf9",
-  //       },
-  //     },
-  //   }
-  // );
+  console.log(req.body);
   listModel
     .findByIdAndUpdate(
       listId,
@@ -212,30 +200,13 @@ app.delete("/deleteTask", jsonParser, (req, res) => {
         useFindAndModify: false,
       }
     )
-    .exec((error, session) => {
+    .exec((error) => {
       if (error) {
         return handleError(error);
       }
     });
 
   res.end("Customer was updated");
-
-  // listModel.findOneAndUpdate(
-  //   {
-  //     _id: listid,
-  //   },
-  //   {
-  //     $push: {
-  //       tasks: {
-  //         Id: "ProductId",
-  //         Title: "ProductTitle",
-  //         Price: "ProductPrice",
-  //       },
-  //     },
-  //   }
-  // );
-  // res.end();
-  //listModel.updateOne({ _id: listid }, { $pull: { tasks: [{ _id: ids }] } });
 });
 
 /*Delete a list*/
