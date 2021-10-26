@@ -24,19 +24,44 @@ export default function CreatedTaskComponent(props) {
   const { fetched_Tasks, setFetched_Tasks } = useContext(UserInputContext);
   let this_listId = props.belongsTo_listId;
   let filtered_tasks = [];
-
+  let tasks = props.tasks;
+  console.log(fetched_Tasks);
   for (let i = 0; i < fetched_Tasks.length; i++) {
     if (this_listId === fetched_Tasks[i].belongsTo_listId) {
       filtered_tasks.push(fetched_Tasks[i]);
     }
   }
+  /*
+  useEffect(() => {
+    fetch("/getTasks")
+      .then((response) => response.json())
+      .then((tasks) => setFetched_Tasks(tasks));
+  }, []);
+  */
 
   useEffect(() => {
-    fetch("/GetTasks")
+    fetch("/getTasks")
       .then((response) => response.json())
-      .then((task) => setFetched_Tasks(task));
+      .then((tasks) => setFetched_Tasks(tasks));
   }, []);
 
+  return (
+    <div>
+      {tasks.map((task) => (
+        <span>
+          <p>{task.task}</p>
+          <button onClick={console.log((e) => e.target.value)}>Delete</button>
+          <DeleteTaskButton
+            taskId={task._id}
+            listId={props.listId}
+          ></DeleteTaskButton>
+          <p></p>
+        </span>
+      ))}
+    </div>
+  );
+
+  /*
   return filtered_tasks.map((task) => {
     return (
       <React.Fragment key={JSON.stringify(task)}>
@@ -45,7 +70,9 @@ export default function CreatedTaskComponent(props) {
           <DeleteTaskButton key={task.id} task_id={task._id} />
           <EditTaskButton key={task.id} task_id={task._id} />
         </TaskItemComponent>{" "}
+        
       </React.Fragment>
     );
   });
+  */
 }

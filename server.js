@@ -7,6 +7,7 @@ const userModel = require("./models/usermodel");
 const moment = require("moment");
 const app = express();
 const bcrypt = require("bcrypt");
+const { isDate } = require("moment");
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -81,8 +82,18 @@ app.get("/getLists", (request, response) => {
 });
 
 /*Get tasks where belongsTo_listId = id */
+/*
 app.get("/getTasks", (request, response) => {
   taskModel.find({}).then((tasksFound) => {
+    if (!tasksFound) {
+      return res.status(404).end();
+    }
+    return response.status(200).json(tasksFound);
+  });
+});
+*/
+app.get("/getTasks", (request, response) => {
+  listModel.find({}).then((tasksFound) => {
     if (!tasksFound) {
       return res.status(404).end();
     }
@@ -168,15 +179,65 @@ app.put("/updateList", jsonParser, (request, response) => {
   response.end("Task Updated");
 });
 /*Delete a task*/
-app.delete("/deleteTask", jsonParser, (request, response) => {
-  let id = request.body.id;
-  taskModel.findByIdAndDelete(id).exec((error) => {
-    if (error) {
-      return handleError(error);
-    }
-  });
-  response.end("Task Deleted!");
+// app.delete("/deleteTask", jsonParser, (request, response) => {
+//   let id = request.body.id;
+//   taskModel.findByIdAndDelete(id).exec((error) => {
+//     if (error) {
+//       return handleError(error);
+//     }
+//   });
+//   response.end("Task Deleted!");
+// });
+app.delete("/deleteTask", jsonParser, (req, res) => {
+  let taskId = req.body.taskId;
+  let listId = req.body.listId;
+  console.log(typeof req.body.listId);
+  // listModel.findOneAndUpdate(
+  //   {
+  //     _id: listid,
+  //   },
+  //   {
+  //     $pull: {
+  //       tasks: {
+  //         _id: "6178525dfcf9ce7dfa7bddf9",
+  //       },
+  //     },
+  //   }
+  // );
+  listModel
+    .findByIdAndUpdate(
+      listId,
+      { $pull: { tasks: { _id: taskId } } },
+      {
+        useFindAndModify: false,
+      }
+    )
+    .exec((error, session) => {
+      if (error) {
+        return handleError(error);
+      }
+    });
+
+  res.end("Customer was updated");
+
+  // listModel.findOneAndUpdate(
+  //   {
+  //     _id: listid,
+  //   },
+  //   {
+  //     $push: {
+  //       tasks: {
+  //         Id: "ProductId",
+  //         Title: "ProductTitle",
+  //         Price: "ProductPrice",
+  //       },
+  //     },
+  //   }
+  // );
+  // res.end();
+  //listModel.updateOne({ _id: listid }, { $pull: { tasks: [{ _id: ids }] } });
 });
+
 /*Delete a list*/
 app.delete("/deleteList", jsonParser, (request, response) => {
   let id = request.body.id;

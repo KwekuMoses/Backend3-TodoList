@@ -9,14 +9,14 @@ const Deletebutton = styled.button`
 
 export default function DeleteTaskButton(props) {
   const deleteTask = (e) => {
-    let this_task_id = props.task_id;
-
     e.preventDefault();
-
-    console.log(e.target.parentNode);
+    let taskId = props.taskId;
+    let listId = props.listId;
+    console.log(taskId);
 
     const payload = {
-      id: this_task_id,
+      listId: listId,
+      id: taskId,
     };
 
     axios({
