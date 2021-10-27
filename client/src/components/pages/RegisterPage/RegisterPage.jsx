@@ -10,8 +10,7 @@ const RegisterPageWrapper = styled.div`
 
 export default function RegisterPage() {
   const { setEmail } = useContext(UserInputContext);
-  const { password, setPassword } = useContext(UserInputContext);
-  console.log(password);
+  const { setPassword } = useContext(UserInputContext);
   return (
     <RegisterPageWrapper>
       <form action="/register" method="POST">

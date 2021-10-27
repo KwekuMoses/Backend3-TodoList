@@ -9,10 +9,6 @@ const Editlistbutton = styled.button`
 `;
 export default function EditListButton(props) {
   function edit_list(e) {
-    /* Set The task Elements innerHTML to the prompt input*/
-    /* e.target.parentNode.firstChild.innerHTML = prompt(
-      "prompt - Please Change Your Task Here"
-    ); */
     let new_header = prompt("prompt - Please Change Your Task Here");
 
     alert("Great Your Task has Changed ");

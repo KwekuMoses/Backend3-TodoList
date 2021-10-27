@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import HeaderComponent from "./HeaderComponent";
 import DeleteListButton from "./buttons/DeleteListButton";
 import EditListButton from "./buttons/EditListButton";
-import UpdateListButton from "./buttons/UpdateListButton";
 import { UserInputContext } from "../../contexts/UserInputContext";
 import TaskCreatorComponent from "./tasks/TaskCreatorComponent";
 import CreatedTaskComponent from "./tasks/CreatedTasksComponent";
@@ -14,7 +12,7 @@ const Createdlists = styled.div`
   margin: 20px;
 `;
 
-export default function CreatedLists(props) {
+export default function CreatedLists() {
   const { listArray } = useContext(UserInputContext);
 
   return listArray.map((list) => {
@@ -25,9 +23,8 @@ export default function CreatedLists(props) {
           listId={list[0]._id}
           tasks={list[0].tasks}
           belongsTo_listId={list[0]._id}
-          key={list[0].tasks._id}
         />
-        <TaskCreatorComponent belongsTo_listId={list[0]._id} key={list[0]} />
+        <TaskCreatorComponent belongsTo_listId={list[0]._id} />
         <br />
         <EditListButton list_id={list[0]._id} />
         <DeleteListButton list_id={list[0]._id} />

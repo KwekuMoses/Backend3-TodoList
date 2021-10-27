@@ -27,7 +27,7 @@ export default function CreatedTaskComponent(props) {
   let this_listId = props.belongsTo_listId;
   let filtered_tasks = [];
   let tasks = props.tasks;
-  console.log(fetched_Tasks);
+
   for (let i = 0; i < fetched_Tasks.length; i++) {
     if (this_listId === fetched_Tasks[i].belongsTo_listId) {
       filtered_tasks.push(fetched_Tasks[i]);

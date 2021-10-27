@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ListCreator from "../../list/ListCreator";
 import styled from "styled-components";
-import { UserInputContext } from "../../../contexts/UserInputContext";
 import CreatedLists from "../../list/CreatedLists";
 
 const ListPageWrapper = styled.div`

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { UserInputContext } from "./contexts/UserInputContext";
 
 import { BrowserRouter, Route } from "react-router-dom";
@@ -6,9 +6,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 
 import ListPage from "./components/pages/ListPage/ListPage.jsx";
-import LandingPage from "./components/pages/LandingPage/LandingPage.jsx";
-import LoginPage from "./components/pages/LoginPage/LoginPage.jsx";
-import RegisterPage from "./components/pages/RegisterPage/RegisterPage.jsx";
 
 export default function App() {
   const [task, setTask] = useState("set Task");
@@ -50,10 +47,7 @@ export default function App() {
   return (
     <UserInputContext.Provider value={userInputContextValue}>
       <BrowserRouter>
-        <Route path="/User/:id" component={ListPage} />
-        <Route path="/Login" component={LoginPage} />
-        <Route path="/Register" component={RegisterPage} />
-        <Route path="/" component={LandingPage} exact />
+        <Route path="/" component={ListPage} />
       </BrowserRouter>
     </UserInputContext.Provider>
   );

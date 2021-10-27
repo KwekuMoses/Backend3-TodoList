@@ -6,7 +6,7 @@ const TodoListWrapper = styled.div`
   border: 2px solid red;
 `;
 
-export default function Todolistitem(props) {
+export default function Todolistitem() {
   return (
     <TodoListWrapper>
       <p>THE ITEM WILL APPEAR HERE</p>
