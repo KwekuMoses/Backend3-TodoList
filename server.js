@@ -155,17 +155,49 @@ app.post("/test", jsonParser, async (request, response) => {
 });
 
 /*Update a task*/
-app.put("/updateTask", jsonParser, (request, response) => {
-  let id = request.body.id;
-  let task = request.body.task;
-  taskModel.findByIdAndUpdate(id, { task: task }).exec((error) => {
-    if (error) {
-      return handleError(error);
-    }
-  });
-  response.end("Task Updated");
+app.put("/updateTask", jsonParser, (req, res) => {
+  let taskId = req.body.taskId;
+  let listId = req.body.listId;
+  let newTask = req.body.newTask;
+  console.log(req.body);
+
+  listModel
+    .updateOne(
+      { _id: listId, "tasks._id": taskId },
+      { $set: { "tasks.$.task": newTask } }
+    )
+    .exec((error) => {
+      if (error) {
+        return handleError(error);
+      }
+    });
+  res.end();
+  // listModel
+  //   .findByIdAndUpdate(
+  //     listId,
+  //     { $set: { tasks: { _id: taskId } } },
+  //     {
+  //       useFindAndModify: false,
+  //     }
+  //   )
+  //   .exec((error) => {
+  //     if (error) {
+  //       return handleError(error);
+  //     }
+  //   });
+
+  // listModel.findOneAndUpdate(
+  //   { _id: listId, tasks: { $elemMatch: { _id: taskId } } },
+  //   {
+  //     $set: {
+  //       "tasks.$.task": newTask,
+  //     },
+  //   }, // list fields you like to change
+  //   { new: true, safe: true, upsert: true }
+  // );
+
+  // res.end("Customer was updated");
 });
-/*Delete a task*/
 
 /*Update a list*/
 app.put("/updateList", jsonParser, (request, response) => {
@@ -178,16 +210,7 @@ app.put("/updateList", jsonParser, (request, response) => {
   });
   response.end("Task Updated");
 });
-/*Delete a task*/
-// app.delete("/deleteTask", jsonParser, (request, response) => {
-//   let id = request.body.id;
-//   taskModel.findByIdAndDelete(id).exec((error) => {
-//     if (error) {
-//       return handleError(error);
-//     }
-//   });
-//   response.end("Task Deleted!");
-// });
+
 app.delete("/deleteTask", jsonParser, (req, res) => {
   let taskId = req.body.taskId;
   let listId = req.body.listId;

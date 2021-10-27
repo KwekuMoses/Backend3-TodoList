@@ -55,6 +55,10 @@ export default function CreatedTaskComponent(props) {
             taskId={task._id}
             listId={props.listId}
           ></DeleteTaskButton>
+          <EditTaskButton
+            taskId={task._id}
+            listId={props.listId}
+          ></EditTaskButton>
           <p></p>
         </span>
       ))}

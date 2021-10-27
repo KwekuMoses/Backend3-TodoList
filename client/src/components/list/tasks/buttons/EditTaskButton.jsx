@@ -13,18 +13,20 @@ export default function EditButton(props) {
     /* e.target.parentNode.firstChild.innerHTML = prompt(
       "prompt - Please Change Your Task Here"
     ); */
-    let task = prompt("prompt - Please Change Your Task Here");
+    let newTask = prompt("prompt - Please Change Your Task Here");
 
     alert("Great Your Task has Changed ");
 
     console.log(e.target.parentNode.firstChild.innerHTML);
-    let this_task_id = props.task_id;
+    let taskId = props.taskId;
+    let listId = props.listId;
 
     console.log(e.target.parentNode);
 
     const payload = {
-      id: this_task_id,
-      task: task,
+      listId: listId,
+      taskId: taskId,
+      newTask: newTask,
     };
 
     axios({
