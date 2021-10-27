@@ -4,13 +4,11 @@ import { UserInputContext } from "../../contexts/UserInputContext";
 
 const Header = styled.input`
   background-color: "#b3b3f80";
-  border: 2px solid grey;
-  width: 150px;
+  border: 1px solid grey;
 `;
 
 export default function HeaderComponent(props) {
   const { setHeader } = useContext(UserInputContext);
-
   return (
     <Header
       value={props.listName || undefined}

@@ -17,12 +17,10 @@ const Createdlists = styled.div`
 export default function CreatedLists(props) {
   const { listArray } = useContext(UserInputContext);
 
-  //console.log("created " + listArray);
   return listArray.map((list) => {
     return (
       <Createdlists id="CreatedList" key={list[0]._id}>
-        <HeaderComponent listName={list[0].header} />
-
+        <h2>{list[0].header} </h2>
         <CreatedTaskComponent
           listId={list[0]._id}
           tasks={list[0].tasks}
@@ -33,7 +31,6 @@ export default function CreatedLists(props) {
         <br />
         <EditListButton list_id={list[0]._id} />
         <DeleteListButton list_id={list[0]._id} />
-        <UpdateListButton />
         <h3>Last Edited {list[0].date}</h3>
       </Createdlists>
     );

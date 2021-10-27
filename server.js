@@ -2,12 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const listModel = require("./models/listmodel");
-const taskModel = require("./models/taskmodel");
 const userModel = require("./models/usermodel");
 const moment = require("moment");
 const app = express();
 const bcrypt = require("bcrypt");
-const { isDate } = require("moment");
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -81,17 +79,6 @@ app.get("/getLists", (request, response) => {
   });
 });
 
-/*Get tasks where belongsTo_listId = id */
-/*
-app.get("/getTasks", (request, response) => {
-  taskModel.find({}).then((tasksFound) => {
-    if (!tasksFound) {
-      return res.status(404).end();
-    }
-    return response.status(200).json(tasksFound);
-  });
-});
-*/
 app.get("/getTasks", (request, response) => {
   listModel.find({}).then((tasksFound) => {
     if (!tasksFound) {
@@ -116,21 +103,7 @@ app.post("/createList", jsonParser, (request, response) => {
 });
 
 /*Create a task*/
-app.post("/createTask", jsonParser, (request, response) => {
-  const taskmodel = new taskModel({
-    task: request.body.task,
-    belongsTo_listId: request.body.belongsTo_listId,
-  });
-
-  taskmodel.save((error) => {
-    if (error) {
-      console.log(error);
-    }
-  });
-  response.end("task created");
-});
-/*Create a task*/
-app.post("/test", jsonParser, async (request, response) => {
+app.post("/createTask", jsonParser, async (request, response) => {
   let id = request.body.belongsTo_listId;
   let task = request.body.task;
   try {
@@ -164,7 +137,11 @@ app.put("/updateTask", jsonParser, (req, res) => {
   listModel
     .updateOne(
       { _id: listId, "tasks._id": taskId },
-      { $set: { "tasks.$.task": newTask } }
+      {
+        date: moment().format("YYYY-MM-DD HH:mm"),
+
+        $set: { "tasks.$.task": newTask },
+      }
     )
     .exec((error) => {
       if (error) {
@@ -193,7 +170,10 @@ app.delete("/deleteTask", jsonParser, (req, res) => {
   listModel
     .findByIdAndUpdate(
       listId,
-      { $pull: { tasks: { _id: taskId } } },
+      {
+        date: moment().format("YYYY-MM-DD HH:mm"),
+        $pull: { tasks: { _id: taskId } },
+      },
       {
         useFindAndModify: false,
       }

@@ -5,19 +5,21 @@ import EditTaskButton from "./buttons/EditTaskButton";
 import { UserInputContext } from "../../../contexts/UserInputContext";
 
 const TaskItemComponent = styled.div`
-  width: auto;
   background-color: "#b3b3f80";
-  border: 5px solid black;
-  display: block;
+  border: 1px solid grey;
+  display: inline-block;
+  margin: 10px;
 `;
 const TaskText = styled.p`
   color: pink;
   display: inline;
   text-align: left;
+  margin: 40px;
 `;
 const TaskWrapper = styled.div`
-  border: 10px solid moccasin;
+  border: 1px solid moccasin;
   margin: 20px;
+  width: 40vw;
 `;
 
 export default function CreatedTaskComponent(props) {
@@ -31,13 +33,6 @@ export default function CreatedTaskComponent(props) {
       filtered_tasks.push(fetched_Tasks[i]);
     }
   }
-  /*
-  useEffect(() => {
-    fetch("/getTasks")
-      .then((response) => response.json())
-      .then((tasks) => setFetched_Tasks(tasks));
-  }, []);
-  */
 
   useEffect(() => {
     fetch("/getTasks")
@@ -46,11 +41,10 @@ export default function CreatedTaskComponent(props) {
   }, []);
 
   return (
-    <div>
+    <TaskWrapper>
       {tasks.map((task) => (
-        <span key={task._id}>
-          <p>{task.task}</p>
-          <button onClick={console.log((e) => e.target.value)}>Delete</button>
+        <TaskItemComponent key={task._id}>
+          <TaskText>{task.task}</TaskText>
           <DeleteTaskButton
             taskId={task._id}
             listId={props.listId}
@@ -59,24 +53,8 @@ export default function CreatedTaskComponent(props) {
             taskId={task._id}
             listId={props.listId}
           ></EditTaskButton>
-          <p></p>
-        </span>
+        </TaskItemComponent>
       ))}
-    </div>
+    </TaskWrapper>
   );
-
-  /*
-  return filtered_tasks.map((task) => {
-    return (
-      <React.Fragment key={JSON.stringify(task)}>
-        <TaskItemComponent key={task}>
-          <TaskText> {JSON.stringify(task.task)} </TaskText>{" "}
-          <DeleteTaskButton key={task.id} task_id={task._id} />
-          <EditTaskButton key={task.id} task_id={task._id} />
-        </TaskItemComponent>{" "}
-        
-      </React.Fragment>
-    );
-  });
-  */
 }

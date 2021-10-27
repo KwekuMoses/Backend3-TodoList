@@ -37,7 +37,7 @@ const CreatedListsWrapper = styled.div`
 export default function ListPage() {
   return (
     <ListPageWrapper>
-      <ListPageTitle>THE TO DO LIST ლ(╹◡╹ლ)</ListPageTitle>
+      <ListPageTitle>Todo App</ListPageTitle>
       <ListCreator />
       <CreatedListsWrapper>
         <CreatedLists />

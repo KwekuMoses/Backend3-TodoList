@@ -7,6 +7,7 @@ const Createtaskbutton = styled.button`
   background-color: black;
   color: white;
   width: 150px;
+  margin: 20px;
 `;
 export default function CreateTaskButton(props) {
   const { task } = useContext(UserInputContext);
@@ -20,9 +21,7 @@ export default function CreateTaskButton(props) {
     };
 
     axios({
-      //url: "/test",
-      //method: "POST",
-      url: "/test",
+      url: "/createTask",
       method: "POST",
       data: payload,
     })
