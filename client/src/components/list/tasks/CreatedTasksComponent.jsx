@@ -48,7 +48,7 @@ export default function CreatedTaskComponent(props) {
   return (
     <div>
       {tasks.map((task) => (
-        <span>
+        <span key={task._id}>
           <p>{task.task}</p>
           <button onClick={console.log((e) => e.target.value)}>Delete</button>
           <DeleteTaskButton

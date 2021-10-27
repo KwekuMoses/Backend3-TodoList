@@ -5,8 +5,9 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Createlistbutton = styled.button`
-  background-color: black;
-  color: white;
+  background-color: #ffffff;
+  border: 2px solid black;
+  color: #056102;
   width: 150px;
 `;
 
@@ -25,11 +26,11 @@ export default function CreateListButton() {
       data: payload,
     })
       .then(() => {
-        console.log("data been sent");
+        console.log("data has been sent");
         window.location.href = "";
       })
       .catch(() => {
-        console.log("data been not sent");
+        console.log("data has not been sent");
       });
   };
 

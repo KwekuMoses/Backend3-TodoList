@@ -172,31 +172,6 @@ app.put("/updateTask", jsonParser, (req, res) => {
       }
     });
   res.end();
-  // listModel
-  //   .findByIdAndUpdate(
-  //     listId,
-  //     { $set: { tasks: { _id: taskId } } },
-  //     {
-  //       useFindAndModify: false,
-  //     }
-  //   )
-  //   .exec((error) => {
-  //     if (error) {
-  //       return handleError(error);
-  //     }
-  //   });
-
-  // listModel.findOneAndUpdate(
-  //   { _id: listId, tasks: { $elemMatch: { _id: taskId } } },
-  //   {
-  //     $set: {
-  //       "tasks.$.task": newTask,
-  //     },
-  //   }, // list fields you like to change
-  //   { new: true, safe: true, upsert: true }
-  // );
-
-  // res.end("Customer was updated");
 });
 
 /*Update a list*/

@@ -21,14 +21,13 @@ export default function CreatedLists(props) {
   return listArray.map((list) => {
     return (
       <Createdlists id="CreatedList" key={list[0]._id}>
-        <h3>LIST ID: {list[0]._id}</h3>
         <HeaderComponent listName={list[0].header} />
-        {/* <Todolistitem /> */}
+
         <CreatedTaskComponent
           listId={list[0]._id}
           tasks={list[0].tasks}
           belongsTo_listId={list[0]._id}
-          key={props.Key}
+          key={list[0].tasks._id}
         />
         <TaskCreatorComponent belongsTo_listId={list[0]._id} key={list[0]} />
         <br />

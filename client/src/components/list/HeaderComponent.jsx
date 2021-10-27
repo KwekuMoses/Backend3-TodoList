@@ -6,10 +6,6 @@ const Header = styled.input`
   background-color: "#b3b3f80";
   border: 2px solid grey;
   width: 150px;
-  &:focus {
-    border: none;
-    outline: none;
-  }
 `;
 
 export default function HeaderComponent(props) {
@@ -18,7 +14,7 @@ export default function HeaderComponent(props) {
   return (
     <Header
       value={props.listName || undefined}
-      placeholder="Set a header (ง •_•)ง"
+      placeholder="Name Your List"
       onChange={(e) => setHeader(e.target.value)}
     />
   );
