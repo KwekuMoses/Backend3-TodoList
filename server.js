@@ -24,8 +24,6 @@ db.once("open", () => {
   console.log("Connected to mongoDb");
 });
 
-/*Makes it possible to access form data in URL */
-/* Keeping this because it will make it easier to access the form-data */
 app.use(express.urlencoded({ extended: false }));
 
 /*Register a user*/
