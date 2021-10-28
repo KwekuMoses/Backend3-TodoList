@@ -28,7 +28,7 @@ db.once("open", () => {
   console.log("Connected to mongoDb");
 });
 
-app.use(cors(3000));
+app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -202,6 +202,6 @@ app.delete("/deleteList", jsonParser, (request, response) => {
   response.end("Task Deleted!");
 });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
