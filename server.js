@@ -6,6 +6,7 @@ const userModel = require("./models/usermodel");
 const moment = require("moment");
 const app = express();
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -26,6 +27,8 @@ db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
   console.log("Connected to mongoDb");
 });
+
+app.use(cors(3000));
 
 app.use(express.urlencoded({ extended: false }));
 
