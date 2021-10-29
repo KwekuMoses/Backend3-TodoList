@@ -17,7 +17,7 @@ export default function App() {
   let listArray = [];
 
   useEffect(() => {
-    fetch("/getLists")
+    fetch("/lists")
       .then((response) => response.json())
       .then((sessions) => setFetched_Data(sessions));
   }, []);
