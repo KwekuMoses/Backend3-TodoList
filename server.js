@@ -15,7 +15,8 @@ var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 mongoose.connect(
-  "mongodb+srv://kweku:mongodb@cluster.8uxr5.mongodb.net/todo-app-kweku-moses",
+  process.env.MONGODB_URI ||
+    "mongodb+srv://kweku:mongodb@cluster.8uxr5.mongodb.net/todo-app-kweku-moses",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -31,6 +32,15 @@ db.once("open", () => {
 app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
+
+app.get("/lists", (request, response) => {
+  listModel.find().then((listsFound) => {
+    if (!listsFound) {
+      return res.status(404).end();
+    }
+    return response.status(200).json(listsFound);
+  });
+});
 
 /*Register a user*/
 /*Second Parameter in bcrypt.hash is salt rounds, e.g. how many times to hash the password*/
@@ -202,6 +212,10 @@ app.delete("/deleteList", jsonParser, (request, response) => {
   response.end("Task Deleted!");
 });
 
-const port = process.env.PORT || 5000;
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static("client/build"));
+}
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
