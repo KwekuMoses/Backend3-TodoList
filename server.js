@@ -212,13 +212,12 @@ app.delete("/deleteList", jsonParser, (request, response) => {
   response.end("Task Deleted!");
 });
 
-if (process.env.NODE_ENV !== "production") {
-  //app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 }
 
 app.get("/", (req, res) => {
-  app.use(express.static("client/build"));
-  res.send("1");
+  res.send("2");
 });
 
 const PORT = process.env.PORT || 8080;
